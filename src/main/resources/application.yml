@@ -1,0 +1,20 @@
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 4
+      permittedNumberOfCallsInHalfOpenState: 10
+      waitDurationInOpenState: 10000
+      failureRateThreshold: 60
+      eventConsumerBufferSize: 10
+      registerHealthIndicator: true
+    someShared:
+      slidingWindowSize: 3
+      permittedNumberOfCallsInHalfOpenState: 10
+  instances:
+    test-api:
+      baseConfig: default
+      waitDurationInOpenState: 500000
+    backendB:
+      baseConfig: someShared
+
+
